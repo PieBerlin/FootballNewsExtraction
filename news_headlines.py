@@ -3,6 +3,16 @@ from selenium.webdriver.chrome.service import Service
 # from selenium.webdriver.chrome.options import Options
 import undetected_chromedriver as uc
 import pandas as pd
+from datetime import datetime 
+import os
+import sys
+
+
+application_path=os.path.dirname(sys.executable)
+
+datetime_now=datetime.now()
+#MMDDYYYY
+month_day_year=datetime_now.strftime("%m%d%Y")
 
 
 website="https://www.thesun.co.uk/sport/football/"
@@ -39,7 +49,10 @@ for container in containers:
 my_dict={'title':titles,'subtitle':subtitles,'link':links}
 
 df_headlines=pd.DataFrame(my_dict)
-df_headlines.to_csv("headline.csv")
+file_name=f"headline-{month_day_year}.csv"
+
+final_path=os.path.join(application_path,file_name)
+df_headlines.to_csv(final_path)
 
 driver.quit()
 
