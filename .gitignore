@@ -1,1 +1,3 @@
 news_headlines.spec
+build/
+dist/
